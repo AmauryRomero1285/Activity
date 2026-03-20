@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- Ambos elementos -->
+<button id="btn-mostrar" >Haz clic aquí</button>
+<section id="mensaje" hidden>Uri es gei</section>
+
+<script>
+  const boton = document.getElementById('btn-mostrar');
+  const seccion = document.getElementById('mensaje');
+
+  boton.addEventListener('click', () => {
+    seccion.hidden = false;   
+  });
+  boton.addEventListener('dblclick',()=>{
+    seccion.hidden=true;
+  })
+</script>
+
+</body>
+</html>
