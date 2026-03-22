@@ -1,26 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<!-- Ambos elementos -->
-<button id="btn-mostrar" >Haz clic aquí</button>
-<section id="mensaje" hidden>Uri es gei</section>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex</title>
+    <link rel="icon" type="image/x-icon" href="/assets/pokeball.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    
+  </head>
+  <body>
+    <header>
+      <div class="logo"><img src="/assets/logo.png" alt="Pokemon Logo" /></div>
 
-<script>
-  const boton = document.getElementById('btn-mostrar');
-  const seccion = document.getElementById('mensaje');
+      <div class="header-actions">
+        <button id="dark-mode" aria-label="Cambiar tema">
+          <!-- Icono Luna (Visible en modo claro) -->
+          <svg
+            class="icon-moon"
+            xmlns="http://www.w3.org"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
 
-  boton.addEventListener('click', () => {
-    seccion.hidden = false;   
-  });
-  boton.addEventListener('dblclick',()=>{
-    seccion.hidden=true;
-  })
-</script>
+          <!-- Icono Sol (Visible en modo oscuro) -->
+          <svg
+            class="icon-sun"
+            xmlns="http://www.w3.org"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
 
-</body>
+        <button id="btn-menu" class="pokeball-btn">
+          <div class="pokeball-top"></div>
+          <div class="pokeball-bottom"></div>
+          <div class="pokeball-center"></div>
+        </button>
+      </div>
+    </header>
+
+    <div class="container">
+      <div id="sidebar-content" hidden>
+        <aside id="sidebar">
+          <nav>
+            <h3>Navegación Generaciones</h3>
+            <ul>
+              <li>
+                <a href="#gen1">
+                  <span>Primera Generación</span>
+                  Kanto
+                </a>
+              </li>
+              <li>
+                <a href="#gen2">
+                  <span>Segunda Generación</span>
+                  Johto
+                </a>
+              </li>
+              <li>
+                <a href="#gen3">
+                  <span>Tercera Generación</span>
+                  Hoenn
+                </a>
+              </li>
+              <li>
+                <a href="#gen4">
+                  <span>Cuarta Generación</span>
+                  Sinnoh
+                </a>
+              </li>
+              <li>
+                <a href="#gen5">
+                  <span>Quinta Generación</span>
+                  Unova
+                </a>
+              </li>
+              <li>
+                <a href="#gen6">
+                  <span>Sexta Generación</span>
+                  Kalos
+                </a>
+              </li>
+              <li>
+                <a href="#gen7">
+                  <span>Séptima Generación</span>
+                  Alola
+                </a>
+              </li>
+              <li>
+                <a href="#gen8">
+                  <span>Octava Generación</span>
+                  Galar
+                </a>
+              </li>
+              <li>
+                <a href="#gen9">
+                  <span>Novena Generación</span>
+                  Paldea
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+      </div>
+
+      <main id="content">
+        <section id="hero-section">
+          <h1>Explora el Mundo Pokémon</h1>
+          <p>Haz clic en un carrusel para pausar y ver evoluciones.</p>
+        </section>
+
+        <!-- Contenedores de Carrusel: El JS llenará estos divs con .carousel-item -->
+
+        <div class="generation-label">Primera Generación</div>
+        <section class="carousel-container" id="prom1">
+          <div class="loading">Cargando Kanto...</div>
+        </section>
+
+        <div class="generation-label">Segunda Generación</div>
+        <section class="carousel-container" id="prom2">
+          <div class="loading">Cargando Johto...</div>
+        </section>
+
+        <div class="generation-label">Tercera Generación</div>
+        <section class="carousel-container" id="prom3">
+          <div class="loading">Cargando Hoenn...</div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <p>Hecho con <strong>PokeAPI</strong></p>
+        <div class="footer-info">
+          <span>Datos actualizados hasta la 9ª Gen</span>
+          <span class="separator">|</span>
+          <a href="https://pokeapi.co" target="_blank" rel="noopener"
+            >pokeapi.co</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
 </html>

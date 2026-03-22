@@ -1,0 +1,944 @@
+/* 1. RESET Y BASE */
+:root {
+  /* Diccionario de Colores Oficiales */
+  --grass: #78c850;
+  --fire: #f08030;
+  --water: #6890f0;
+  --bug: #a8b820;
+  --normal: #a8a878;
+  --poison: #a040a0;
+  --electric: #f8d030;
+  --ground: #e0c068;
+  --fairy: #ee99ac;
+  --fighting: #c03028;
+  --psychic: #f85888;
+  --rock: #b8a038;
+  --ghost: #705898;
+  --ice: #98d8d8;
+  --dragon: #7038f8;
+  --dark: #705848;
+  --steel: #b8b8d0;
+  --flying: #a890f0;
+  /*Colores de la pagina*/
+  --background: #f4f4f9;
+  --primary: #e23030;
+  --dark: #0c0c0c;
+  --pokemon:#007bff;
+}
+/* Definición de colores para el Modo Oscuro */
+body.dark-theme {
+    --background: #1a1a1a;
+    --dark: #f4f4f9;
+    color: #eee;
+}
+
+/* Ajustes automáticos al activar la clase */
+body.dark-theme #sidebar,
+body.dark-theme .info,
+body.dark-theme #sidebar ul li a {
+    background-color: #2a2a2a;
+    color: #fff;
+    border-color: #444;
+}
+
+body.dark-theme #sidebar ul li a span {
+    color: #bbb;
+}
+
+body.dark-theme .image-wrapper {
+    background: #333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background);
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 2. HEADER Y FOOTER */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 70px;
+  background: var(--background);
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+/* Agrupa los botones a la derecha */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre Dark Mode y Pokéball */
+}
+#dark-mode {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#dark-mode svg {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+}
+
+/* Estado inicial: Luna visible, Sol oculto abajo */
+.icon-sun {
+  opacity: 0;
+  transform: translateY(30px);
+  color: #ffcb05;
+}
+
+.icon-moon {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--dark);
+}
+
+/* Cuando el modo oscuro está activo */
+body.dark-theme .icon-sun {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.dark-theme .icon-moon {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+/* Efecto hover */
+#dark-mode:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+body.dark-theme #dark-mode:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 50px; /* Altura máxima recomendada para el header */
+}
+
+.logo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/*boton Menú*/
+.pokeball-btn {
+  width: 45px;
+  height: 45px;
+  background: var(--dark);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--dark);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  padding: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.pokeball-btn:hover {
+  transform: rotate(15deg);
+}
+
+/* Mitad superior */
+.pokeball-top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--primary);
+  border-bottom: 2px solid var(--dark);
+  transition: transform 0.4s ease;
+}
+
+/* Mitad inferior (Blanca) */
+.pokeball-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--background);
+  transition: transform 0.4s ease;
+}
+
+/* Círculo central (Botón) */
+.pokeball-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: var(--background);
+  border: 3px solid var(--dark);
+  border-radius: 50%;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+/* ESTADO ABIERTO (Cuando se hace clic) */
+.pokeball-btn.open .pokeball-top {
+  transform: translateY(-100%);
+}
+
+.pokeball-btn.open .pokeball-bottom {
+  transform: translateY(100%);
+}
+
+.pokeball-btn.open .pokeball-center {
+  opacity: 0;
+}
+
+.pokeball-center::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--dark);
+  border-radius: 50%;
+}
+
+footer {
+  background-color: var(--dark);
+  color: white;
+  padding: 25px 20px;
+  margin-top: auto; 
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+  border-top: 4px solid var(--primary);
+  text-align: center; 
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.footer-content p {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.footer-content strong {
+  color: #ffcb05; /* Amarillo clásico de Pokémon */
+  text-shadow: 1px 1px #3d7dca; /* Borde azul tipo logo */
+}
+
+.footer-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.footer-info a {
+  color: var(--pokemon);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+  color: #ffcb05;
+  text-decoration: underline;
+}
+
+.separator {
+  color: #444;
+}
+
+/* 3. ESTRUCTURA Y SIDEBAR */
+.generation-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 40px 0 15px 10px;
+  padding-left: 10px;
+  border-left: 5px solid var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.container {
+  display: flex;
+  position: relative;
+}
+
+#sidebar-content {
+  position: fixed; /* Fijo sobre toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+  backdrop-filter: blur(4px); /* Difumina un poco el fondo */
+  z-index: 2000; /* Por encima de todo, incluso del header */
+  transition: opacity 0.3s ease;
+  display: flex; /* Para alinear el sidebar interno */
+}
+
+#sidebar-content[hidden] {
+  display: none;
+  opacity: 0;
+}
+
+#sidebar {
+  width: 300px;
+  height: 100%;
+  background-color: #f9f9f9;
+  padding: 30px 20px;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+  transform: translateX(0); /* Posición inicial */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Títulos y Enlaces dentro del Sidebar */
+#sidebar h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--dark);
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 10px;
+}
+
+#sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#sidebar ul li a {
+  display: block;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+#sidebar ul li a:hover {
+  transform: scale(1.02);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+#sidebar ul li a span {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+
+
+/* 2. CREACIÓN DE LA POKEBALL (OCULTA POR DEFECTO) */
+#sidebar ul li a::before {
+  content: "";
+  position: absolute;
+  left: -30px; /* Empieza fuera de la vista */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at center, 
+    white 0%, white 15%, 
+    var(--dark) 15%, var(--dark) 25%, 
+    transparent 25%
+  ), 
+  linear-gradient(var(--primary) 50%, white 50%);
+  border: 2px solid var(--dark);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+}
+
+/* 3. EFECTO HOVER: APARECE Y SE DESPLAZA */
+#sidebar ul li a:hover {
+  padding-left: 55px; /* Empuja el texto un poco más */
+  background: #fff5f5;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+#sidebar ul li a:hover::before {
+  left: 15px; /* Entra a su posición */
+  opacity: 1;
+  transform: translateY(-50%) rotate(360px); /* Gira al entrar */
+}
+
+/* Ajuste del contenido principal para que no se mueva */
+#content {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#hero-section {
+  background: linear-gradient(135deg, var(--primary) 0%, #ff7676 100%);
+  min-height: 300px;
+  margin-bottom: 30px;
+  padding: 40px;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* 4. CARRUSEL */
+#prom1,
+#prom2,
+#prom3 {
+  width: 100%;
+  margin-bottom: 40px;
+  background: #ffffff;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  min-height: 450px;
+  display: flex;
+  transition: outline 0.3s ease;
+}
+
+#prom1,
+#prom3 {
+  flex-direction: row;
+}
+#prom2 {
+  flex-direction: row-reverse;
+}
+
+/* 5. POKEMON ITEM */
+.carousel-item {
+  display: none;
+  width: 100%;
+  min-height: 450px;
+  align-items: stretch;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 6. IMAGEN WRAPPER */
+.image-wrapper {
+  flex: 0 0 450px;
+  background: #f0f0f0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-wrapper img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bg-number {
+  position: absolute;
+  font-size: 15rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.05);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel-container.paused .image-wrapper img {
+  transform: scale(1.2);
+}
+
+.types-container {
+  display: flex;
+  margin-top: 5px;
+}
+
+.type-badge {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Asignación de colores */
+.grass {
+  background-color: var(--grass);
+}
+.fire {
+  background-color: var(--fire);
+}
+.water {
+  background-color: var(--water);
+}
+.bug {
+  background-color: var(--bug);
+}
+.normal {
+  background-color: var(--normal);
+}
+.poison {
+  background-color: var(--poison);
+}
+.electric {
+  background-color: var(--electric);
+  color: #333;
+}
+.ground {
+  background-color: var(--ground);
+}
+.fairy {
+  background-color: var(--fairy);
+}
+.fighting {
+  background-color: var(--fighting);
+}
+.psychic {
+  background-color: var(--psychic);
+}
+.rock {
+  background-color: var(--rock);
+}
+.ghost {
+  background-color: var(--ghost);
+}
+.ice {
+  background-color: var(--ice);
+  color: #333;
+}
+.dragon {
+  background-color: var(--dragon);
+}
+.dark {
+  background-color: var(--dark);
+}
+.steel {
+  background-color: var(--steel);
+  color: #333;
+}
+.flying {
+  background-color: var(--flying);
+}
+
+/* 7. INFO SECTION */
+.info {
+  flex: 1;
+  background: #ffffff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.info h1 {
+  color: #067cf1;
+  font-size: 2.2rem;
+}
+
+.id-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.stats-row {
+  margin-bottom: 15px;
+}
+
+.stats-row strong {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.description {
+  margin-top: 20px;
+  color: #666;
+  font-style: italic;
+  font-size: 1rem;
+  border-left: 3px solid #eee;
+  padding-left: 15px;
+}
+
+/* 8. ESTADO PAUSADO */
+.paused {
+  outline: 6px solid rgba(0, 0, 0, 0.1);
+  outline-offset: 1px;
+  animation: rainbow 15s linear infinite;
+  display: block !important;
+}
+
+/* 9. RESPONSIVO - TABLETS Y MÓVILES (Unificado) */
+@media (max-width: 1024px) {
+  /* Estructura de Cards */
+  #prom1,
+  #prom2,
+  #prom3,
+  .carousel-item {
+    flex-direction: column !important;
+    min-height: auto;
+    align-items: center;
+  }
+
+  .image-wrapper {
+    flex: 0 0 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .carousel-container.paused .image-wrapper {
+    flex: 0 0 250px;
+  }
+
+  .info {
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .info-header,
+  .types-container {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  #hero-section {
+    font-size: 1.5rem;
+    padding: 30px;
+    min-height: 180px;
+    text-align: center;
+  }
+
+   #sidebar-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro bloqueante */
+    backdrop-filter: blur(4px);
+    z-index: 4000;
+    display: flex;
+    justify-content: flex-start; /* Alineado a la izquierda */
+    align-items: stretch;
+  }
+
+  /* Control de visibilidad para evitar que se active solo */
+  #sidebar-content[hidden] {
+    display: none !important;
+  }
+
+  #sidebar-content:not([hidden]) {
+    display: flex !important;
+  }
+
+  #sidebar {
+    width: 280px;
+    max-width: 85%;
+    height: 100%; 
+    background: white;
+    padding: 25px 15px;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.3);
+   
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  }
+
+  #sidebar ul {
+    padding-bottom: 40px; 
+  }
+
+  #sidebar a {
+    font-size: 1.1rem;
+    padding: 12px;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  #sidebar a,
+  #sidebar button {
+    font-size: 1.4rem;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    text-decoration: none;
+  }
+
+  /* Ajuste de Header para que la Pokebola mande */
+  header {
+    z-index: 3000;
+  }
+}
+
+
+/* 10. OPTIMIZACIÓN PIXEL 7 / MÓVILES (600px o menos) */
+@media (max-width: 600px) {
+  header {
+    padding: 0 15px;
+    height: 65px;
+    z-index: 3000;
+  }
+
+  .logo {
+    height: 40px;
+    max-width: 60%;
+  }
+
+  #btn-menu {
+    padding: 0;
+  }
+
+  #hero-section {
+    font-size: 1.2rem;
+    padding: 20px;
+    min-height: 140px;
+    margin-bottom: 20px;
+  }
+
+  #content {
+    margin: 0 auto;
+    padding: 10px;
+    width: 95%;
+  }
+
+  .generation-label {
+    font-size: 1.1rem;
+    margin: 25px 0 15px 0;
+    text-align: center;
+    border-left: none;
+    border-bottom: 3px solid #e23030;
+    padding-bottom: 5px;
+    display: block;
+  }
+
+  .image-wrapper {
+    flex: 0 0 220px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bg-number {
+    font-size: 6rem;
+  }
+
+  .info {
+    padding: 20px;
+  }
+
+  .info h1 {
+    font-size: 1.4rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    border-left: none;
+    border-top: 1px solid #eee;
+    padding: 15px 5px 0;
+  }
+
+  #sidebar-content {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+
+  #sidebar {
+    width: 100%;
+    box-shadow: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+    overflow-y: auto; 
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #sidebar a,
+  #sidebar button {
+    font-size: 1.4rem;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  #sidebar-content:not([hidden]) {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 2000;
+  }
+
+    body.modal-open {
+    overflow: hidden;
+  }
+}
+
+/* 10. ANIMACIÓN RAINBOW */
+@keyframes rainbow {
+  0%,
+  100% {
+    background-color: var(--grass);
+    outline-color: var(--grass);
+  }
+  5.5% {
+    background-color: var(--fire);
+    outline-color: var(--fire);
+  }
+  11.1% {
+    background-color: var(--water);
+    outline-color: var(--water);
+  }
+  16.6% {
+    background-color: var(--bug);
+    outline-color: var(--bug);
+  }
+  22.2% {
+    background-color: var(--normal);
+    outline-color: var(--normal);
+  }
+  27.7% {
+    background-color: var(--poison);
+    outline-color: var(--poison);
+  }
+  33.3% {
+    background-color: var(--electric);
+    outline-color: var(--electric);
+  }
+  38.8% {
+    background-color: var(--ground);
+    outline-color: var(--ground);
+  }
+  44.4% {
+    background-color: var(--fairy);
+    outline-color: var(--fairy);
+  }
+  50.0% {
+    background-color: var(--fighting);
+    outline-color: var(--fighting);
+  }
+  55.5% {
+    background-color: var(--psychic);
+    outline-color: var(--psychic);
+  }
+  61.1% {
+    background-color: var(--rock);
+    outline-color: var(--rock);
+  }
+  66.6% {
+    background-color: var(--ghost);
+    outline-color: var(--ghost);
+  }
+  72.2% {
+    background-color: var(--ice);
+    outline-color: var(--ice);
+  }
+  77.7% {
+    background-color: var(--dragon);
+    outline-color: var(--dragon);
+  }
+  83.3% {
+    background-color: var(--dark);
+    outline-color: var(--dark);
+  }
+  88.8% {
+    background-color: var(--steel);
+    outline-color: var(--steel);
+  }
+  94.4% {
+    background-color: var(--flying);
+    outline-color: var(--flying);
+  }
+}
