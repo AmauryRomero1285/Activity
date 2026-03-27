@@ -1,0 +1,43 @@
+/* Reset y variables globales */
+:root {
+  /* Diccionario de Colores Oficiales */
+  --grass: #78c850;
+  --fire: #f08030;
+  --water: #6890f0;
+  --bug: #a8b820;
+  --normal: #a8a878;
+  --poison: #a040a0;
+  --electric: #f8d030;
+  --ground: #e0c068;
+  --fairy: #ee99ac;
+  --fighting: #c03028;
+  --psychic: #f85888;
+  --rock: #b8a038;
+  --ghost: #705898;
+  --ice: #98d8d8;
+  --dragon: #7038f8;
+  --dark: #705848;
+  --steel: #b8b8d0;
+  --flying: #a890f0;
+  /*Colores de la pagina*/
+  --background: #f4f4f9;
+  --primary: #e23030;
+  --dark: #0c0c0c;
+  --pokemon: #007bff;
+
+  /*Tamaños*/
+  --header-heigth: 80px
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background);
+  line-height: 1.6;
+  color: #333;
+}

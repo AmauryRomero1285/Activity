@@ -6,7 +6,6 @@
     <title>Pokédex</title>
     <link rel="icon" type="image/x-icon" href="/assets/pokeball.png" />
     <link rel="stylesheet" href="/css/styles.css" />
-    
   </head>
   <body>
     <header>
@@ -125,27 +124,66 @@
       </div>
 
       <main id="content">
-        <section id="hero-section">
-          <h1>Explora el Mundo Pokémon</h1>
-          <p>Haz clic en un carrusel para pausar y ver evoluciones.</p>
+        <section id="hero-section" class="hero-large">
+          <div class="hero-content">
+            <h1>Explora el Mundo Pokémon</h1>
+            <p>Busca a tu compañero favorito y descubre sus evoluciones.</p>
+
+            <div class="search-container">
+              <div class="search-box">
+                <input
+                  type="text"
+                  id="pokemon-search"
+                  placeholder="Ej: Pikachu o 25"
+                  aria-label="Buscar Pokémon"
+                />
+                <button id="search-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- Contenedores de Carrusel: El JS llenará estos divs con .carousel-item -->
 
-        <div class="generation-label">Primera Generación</div>
-        <section class="carousel-container" id="prom1">
-          <div class="loading">Cargando Kanto...</div>
-        </section>
+        <div id="cards">
+          <!-- Primera Generación -->
+          <div class="card__content">
+            <div class="generation-label">Primera Generación</div>
+            <section class="carousel-container" id="prom1">
+              <div class="loading">Cargando Kanto...</div>
+            </section>
+          </div>
 
-        <div class="generation-label">Segunda Generación</div>
-        <section class="carousel-container" id="prom2">
-          <div class="loading">Cargando Johto...</div>
-        </section>
+          <!-- Segunda Generación -->
+          <div class="card__content">
+            <div class="generation-label">Segunda Generación</div>
+            <section class="carousel-container" id="prom2">
+              <div class="loading">Cargando Johto...</div>
+            </section>
+          </div>
 
-        <div class="generation-label">Tercera Generación</div>
-        <section class="carousel-container" id="prom3">
-          <div class="loading">Cargando Hoenn...</div>
-        </section>
+          <!-- Tercera Generación -->
+          <div class="card__content">
+            <div class="generation-label">Tercera Generación</div>
+            <section class="carousel-container" id="prom3">
+              <div class="loading">Cargando Hoenn...</div>
+            </section>
+          </div>
+        </div>
       </main>
     </div>
 

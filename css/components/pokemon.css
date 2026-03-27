@@ -1,0 +1,119 @@
+/* Tarjetas de Pokémon */
+.image-wrapper {
+  flex: 0 0 450px;
+  background: #f0f0f0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-wrapper img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bg-number {
+  position: absolute;
+  font-size: 15rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.05);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel-container.paused .image-wrapper img {
+  transform: scale(1.2);
+}
+
+.types-container {
+  display: flex;
+  margin-top: 5px;
+}
+
+.type-badge {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Asignación de colores */
+.grass { background-color: var(--grass); }
+.fire { background-color: var(--fire); }
+.water { background-color: var(--water); }
+.bug { background-color: var(--bug); }
+.normal { background-color: var(--normal); }
+.poison { background-color: var(--poison); }
+.electric { background-color: var(--electric); color: #333; }
+.ground { background-color: var(--ground); }
+.fairy { background-color: var(--fairy); }
+.fighting { background-color: var(--fighting); }
+.psychic { background-color: var(--psychic); }
+.rock { background-color: var(--rock); }
+.ghost { background-color: var(--ghost); }
+.ice { background-color: var(--ice); color: #333; }
+.dragon { background-color: var(--dragon); }
+.dark { background-color: var(--dark); }
+.steel { background-color: var(--steel); color: #333; }
+.flying { background-color: var(--flying); }
+
+/* INFO SECTION */
+.info {
+  flex: 1;
+  background: #ffffff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.info h1 {
+  color: #067cf1;
+  font-size: 2.2rem;
+}
+
+.id-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.stats-row {
+  margin-bottom: 15px;
+}
+
+.stats-row strong {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.description {
+  margin-top: 20px;
+  color: #666;
+  font-style: italic;
+  font-size: 1rem;
+  border-left: 3px solid #eee;
+  padding-left: 15px;
+}

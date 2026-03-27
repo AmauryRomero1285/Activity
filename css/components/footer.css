@@ -1,0 +1,56 @@
+/* Footer */
+footer {
+  background-color: var(--dark);
+  color: white;
+  padding: 25px 20px;
+  margin-top: auto; 
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+  border-top: 4px solid var(--primary);
+  text-align: center; 
+  position:sticky;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.footer-content p {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.footer-content strong {
+  color: #ffcb05;
+  text-shadow: 1px 1px #3d7dca;
+}
+
+.footer-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.footer-info a {
+  color: var(--pokemon);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+  color: #ffcb05;
+  text-decoration: underline;
+}
+
+.separator {
+  color: #444;
+}

@@ -1,0 +1,154 @@
+/* Header y Navegación */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: var(--header-heigth);
+  background: var(--background);
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Agrupa los botones a la derecha */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#dark-mode {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#dark-mode svg {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+}
+
+/* Estado inicial: Luna visible, Sol oculto abajo */
+.icon-sun {
+  opacity: 0;
+  transform: translateY(30px);
+  color: #ffcb05;
+}
+
+.icon-moon {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--dark);
+}
+
+/* Efecto hover */
+#dark-mode:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.logo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/*boton Menú*/
+.pokeball-btn {
+  width: 45px;
+  height: 45px;
+  background: var(--dark);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--dark);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  padding: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.pokeball-btn:hover {
+  transform: rotate(15deg);
+}
+
+/* Mitad superior */
+.pokeball-top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--primary);
+  border-bottom: 2px solid var(--dark);
+  transition: transform 0.4s ease;
+}
+
+/* Mitad inferior (Blanca) */
+.pokeball-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--background);
+  transition: transform 0.4s ease;
+}
+
+/* Círculo central (Botón) */
+.pokeball-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: var(--background);
+  border: 3px solid var(--dark);
+  border-radius: 50%;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+/* ESTADO ABIERTO (Cuando se hace clic) */
+.pokeball-btn.open .pokeball-top {
+  transform: translateY(-100%);
+}
+
+.pokeball-btn.open .pokeball-bottom {
+  transform: translateY(100%);
+}
+
+.pokeball-btn.open .pokeball-center {
+  opacity: 0;
+}
+
+.pokeball-center::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--dark);
+  border-radius: 50%;
+}

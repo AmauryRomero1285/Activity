@@ -1,0 +1,38 @@
+/* Modo Oscuro */
+body.dark-theme {
+  --background: #1a1a1a;
+  --dark: #f4f4f9;
+  color: #eee;
+}
+
+/* Ajustes automáticos al activar la clase */
+body.dark-theme #sidebar,
+body.dark-theme .info,
+body.dark-theme #sidebar ul li a {
+  background-color: #2a2a2a;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark-theme #sidebar ul li a span {
+  color: #bbb;
+}
+
+body.dark-theme .image-wrapper {
+  background: #333;
+}
+
+/* Cuando el modo oscuro está activo */
+body.dark-theme .icon-sun {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.dark-theme .icon-moon {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+body.dark-theme #dark-mode:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

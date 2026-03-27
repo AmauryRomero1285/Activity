@@ -1,0 +1,49 @@
+/* Carrusel */
+#prom1,
+#prom2,
+#prom3 {
+  width: 100%;
+  margin-bottom: 40px;
+  background: #ffffff;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  min-height: 450px;
+  display: flex;
+  transition: outline 0.3s ease;
+}
+
+#prom1,
+#prom3 {
+  flex-direction: row;
+}
+#prom2 {
+  flex-direction: row-reverse;
+}
+
+.carousel-item {
+  display: none;
+  width: 100%;
+  min-height: 450px;
+  align-items: stretch;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ESTADO PAUSADO */
+.paused {
+  outline: 6px solid rgba(0, 0, 0, 0.1);
+  outline-offset: 1px;
+  animation: rainbow 15s linear infinite;
+  display: block !important;
+}
